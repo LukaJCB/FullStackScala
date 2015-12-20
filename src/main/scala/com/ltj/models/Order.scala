@@ -1,6 +1,5 @@
 package com.ltj.models
 
-
 case class Order(pizzas: List[Pizza]) {
   
   val minimumOrderValue = 12.50

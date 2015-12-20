@@ -1,6 +1,6 @@
 package com.ltj.models
 
-case class Topping private(name: String, price: Float) 
+case class Topping (name: String, price: Float)
 
 object Topping {
 	def apply(name: String): Option[Topping] = name match {
