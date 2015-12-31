@@ -6,7 +6,7 @@ import com.mongodb.casbah.Imports._
 class ScalatraBootstrap extends LifeCycle {
   override def init(context: ServletContext) {
     val mongoClient =  MongoClient()
-    val mongo = mongoClient("test")
+    val mongo = mongoClient("pizza")
     context.mount(new PizzaServlet(mongo), "/*")
   }
 }
