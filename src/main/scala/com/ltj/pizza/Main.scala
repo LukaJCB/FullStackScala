@@ -8,6 +8,9 @@ import dom.window
 import upickle.default._
 import com.ltj.models._
 import scala.scalajs.js.annotation.JSExport
+import org.scalajs.jquery.JQueryAjaxSettings
+import scala.scalajs.js
+import org.scalajs.jquery.JQuery
 
 object Main extends JSApp {
 	
@@ -31,15 +34,22 @@ object Main extends JSApp {
   @JSExport
   def submitOrder(): Unit = { 
 	  if (order.isValidOrder()){
-	 	   jQuery.post("/orders", write(order),(data: Any) => {
+	 	  
+	 	   val jqxhr = jQuery.post("/orders", write(order),(data: Any) => {
     		 	window.alert("Your order has been processed and will be there shortly!")
     	   })
+    	   
 	  } else {
 	 	  window.alert("Minimum value not reached!")
 	  }
   }
   
-  def main(): Unit = {}
+  def main(): Unit = {
+	  
+		jQuery.ajaxSetup(js.Dynamic.literal(
+			contentType = "application/json"
+		))
+  }
 	
   
   
