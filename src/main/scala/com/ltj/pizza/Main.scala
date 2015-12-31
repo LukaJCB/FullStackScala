@@ -44,6 +44,18 @@ object Main extends JSApp {
 	  }
   }
   
+  @JSExport
+  def showOrders(): Unit = {
+  		jQuery.get(url = "/orders",  success = (data: String) => {
+    		val orders = read[Seq[Order]](data)
+    		orders.foreach(order => {
+    			val list = jQuery("<ul>")
+    			order.pizzas.foreach { pizza => list.append(jQuery("<li>").text(pizza.toString())) }
+    			jQuery("#orders").append(jQuery("<li>").append(list))
+    		})
+		})
+  }
+  
   def main(): Unit = {
 	  
 		jQuery.ajaxSetup(js.Dynamic.literal(
